@@ -41,6 +41,7 @@ export interface Resident {
   phone: string;
   email: string;
   type: ResidentType;
+  status: 'active' | 'pending';
   password?: string; // Added for auth flow simulation
 }
 
@@ -83,4 +84,14 @@ export interface Transaction {
   date: string;
   description: string;
   supplier?: string; // For expenses
+}
+
+export interface ChatMessage {
+  id: string;
+  condoId: string;
+  residentId: string; // The conversation belongs to this resident
+  content: string;
+  timestamp: string;
+  sentByManager: boolean; // true if sent by Sindico, false if by Resident
+  read: boolean;
 }

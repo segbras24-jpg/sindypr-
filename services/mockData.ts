@@ -1,5 +1,5 @@
 
-import { Condominium, Resident, ResidentType, Provider, Meeting, Notice, NoticeCategory, Transaction, TransactionType } from '../types';
+import { Condominium, Resident, ResidentType, Provider, Meeting, Notice, NoticeCategory, Transaction, TransactionType, ChatMessage } from '../types';
 
 export const MOCK_CONDOS: Condominium[] = [
   {
@@ -21,9 +21,11 @@ export const MOCK_CONDOS: Condominium[] = [
 ];
 
 export const MOCK_RESIDENTS: Resident[] = [
-  { id: 'r1', condoId: 'c1', name: 'Ana Paula', cpf: '123.456.789-00', block: 'A', unit: '101', phone: '(11) 99999-1111', email: 'ana@email.com', type: ResidentType.OWNER },
-  { id: 'r2', condoId: 'c1', name: 'Roberto Santos', cpf: '234.567.890-11', block: 'A', unit: '102', phone: '(11) 99999-2222', email: 'beto@email.com', type: ResidentType.TENANT },
-  { id: 'r3', condoId: 'c2', name: 'Mariana Costa', cpf: '345.678.901-22', block: 'Único', unit: '501', phone: '(21) 98888-3333', email: 'mari@email.com', type: ResidentType.OWNER },
+  { id: 'r1', condoId: 'c1', name: 'Ana Paula', cpf: '123.456.789-00', block: 'A', unit: '101', phone: '(11) 99999-1111', email: 'ana@email.com', type: ResidentType.OWNER, status: 'active' },
+  { id: 'r2', condoId: 'c1', name: 'Roberto Santos', cpf: '234.567.890-11', block: 'A', unit: '102', phone: '(11) 99999-2222', email: 'beto@email.com', type: ResidentType.TENANT, status: 'active' },
+  { id: 'r3', condoId: 'c2', name: 'Mariana Costa', cpf: '345.678.901-22', block: 'Único', unit: '501', phone: '(21) 98888-3333', email: 'mari@email.com', type: ResidentType.OWNER, status: 'active' },
+  // Pending resident for testing
+  { id: 'r4', condoId: 'c1', name: 'Lucas Pendente', cpf: '999.888.777-66', block: 'B', unit: '202', phone: '(11) 90000-0000', email: 'lucas@email.com', type: ResidentType.RESIDENT, status: 'pending' },
 ];
 
 export const MOCK_PROVIDERS: Provider[] = [
@@ -47,4 +49,12 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   { id: 't3', condoId: 'c1', type: TransactionType.EXPENSE, amount: 4500, category: 'Manutenção', date: '2024-05-15', supplier: 'Elevadores Tech', description: 'Reparo motor portão' },
   { id: 't4', condoId: 'c1', type: TransactionType.INCOME, amount: 500, category: 'Multas', date: '2024-05-20', description: 'Multa barulho apto 302' },
   { id: 't5', condoId: 'c2', type: TransactionType.INCOME, amount: 8000, category: 'Taxa Condominial', date: '2024-05-05', description: 'Arrecadação mensal' },
+];
+
+export const MOCK_CHAT: ChatMessage[] = [
+  { id: 'msg1', condoId: 'c1', residentId: 'r1', content: 'Bom dia! Poderia reservar o salão para o dia 20?', timestamp: '2024-06-01T10:30:00', sentByManager: false, read: true },
+  { id: 'msg2', condoId: 'c1', residentId: 'r1', content: 'Olá Ana, vou verificar a disponibilidade.', timestamp: '2024-06-01T10:35:00', sentByManager: true, read: true },
+  { id: 'msg3', condoId: 'c1', residentId: 'r1', content: 'Confirmado! Já está reservado.', timestamp: '2024-06-01T11:00:00', sentByManager: true, read: true },
+  { id: 'msg4', condoId: 'c1', residentId: 'r1', content: 'Muito obrigada!', timestamp: '2024-06-01T11:05:00', sentByManager: false, read: false },
+  { id: 'msg5', condoId: 'c1', residentId: 'r2', content: 'O portão da garagem está fazendo barulho novamente.', timestamp: '2024-06-02T08:00:00', sentByManager: false, read: false },
 ];
